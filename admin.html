@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Bedazzled by Adepa | Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            <h1>Bedazzled by Adepa</h1>
+        </div>
+
+        <a href="index.html" class="nav-button">
+            View Website
+        </a>
+
+    </header>
+
+
+    <main class="admin-page">
+
+        <section class="admin-header">
+
+            <p class="eyebrow">
+                ADMIN DASHBOARD
+            </p>
+
+            <h2>
+                Manage your appointments.
+            </h2>
+
+            <p>
+                View and manage booking requests
+                from your Bedazzled by Adepa clients.
+            </p>
+
+        </section>
+
+
+        <section class="dashboard-stats">
+
+            <div class="stat-card">
+
+                <span>01</span>
+
+                <h3 id="pendingCount">
+                    0
+                </h3>
+
+                <p>Pending</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>02</span>
+
+                <h3 id="confirmedCount">
+                    0
+                </h3>
+
+                <p>Confirmed</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>03</span>
+
+                <h3 id="completedCount">
+                    0
+                </h3>
+
+                <p>Completed</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>04</span>
+
+                <h3 id="cancelledCount">
+                    0
+                </h3>
+
+                <p>Cancelled</p>
+
+            </div>
+
+        </section>
+
+
+        <section class="appointments">
+
+            <div class="appointments-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        APPOINTMENTS
+                    </p>
+
+                    <h2>
+                        Recent bookings
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div id="bookingList">
+
+                <p>
+                    Loading bookings...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
