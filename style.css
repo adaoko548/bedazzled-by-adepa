@@ -1036,3 +1036,451 @@ footer {
     background: #2b2024;
     color: #ffffff;
 }
+
+/* =================================
+   ADMIN GALLERY
+================================= */
+
+.admin-gallery {
+    margin-top: 80px;
+    padding: 50px;
+    background: #ffffff;
+    border: 1px solid #eee;
+}
+
+.admin-gallery .section-heading {
+    margin-bottom: 35px;
+}
+
+.admin-gallery .section-heading h2 {
+    margin: 8px 0 12px;
+    font-size: 32px;
+}
+
+.admin-gallery .section-heading p:not(.eyebrow) {
+    color: #777;
+    max-width: 600px;
+}
+
+
+/* =================================
+   UPLOAD FORM
+================================= */
+
+.gallery-upload-form {
+    max-width: 650px;
+    padding: 30px;
+    background: #faf8f7;
+    border: 1px solid #eee;
+}
+
+.gallery-upload-form .form-group {
+    margin-bottom: 22px;
+}
+
+.gallery-upload-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.gallery-upload-form input[type="text"],
+.gallery-upload-form input[type="file"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    border: 1px solid #ddd;
+    background: #fff;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.gallery-upload-form input[type="file"] {
+    cursor: pointer;
+}
+
+.gallery-upload-form input:focus {
+    outline: none;
+    border-color: #999;
+}
+
+
+/* =================================
+   UPLOAD MESSAGE
+================================= */
+
+#galleryUploadMessage {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+
+/* =================================
+   CURRENT GALLERY
+================================= */
+
+.admin-gallery-list {
+    margin-top: 60px;
+}
+
+.admin-gallery-list > h2 {
+    margin-bottom: 25px;
+    font-size: 26px;
+}
+
+
+/* =================================
+   GALLERY GRID
+================================= */
+
+#adminGalleryGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.admin-gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: #f5f5f5;
+    border: 1px solid #eee;
+}
+
+.admin-gallery-item img {
+    display: block;
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+
+/* =================================
+   GALLERY INFORMATION
+================================= */
+
+.admin-gallery-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px;
+    background: #fff;
+}
+
+.admin-gallery-info h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =================================
+   DELETE BUTTON
+================================= */
+
+.delete-gallery-button {
+    border: none;
+    padding: 8px 12px;
+    background: #f4e5e5;
+    color: #8a4141;
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.delete-gallery-button:hover {
+    background: #8a4141;
+    color: #fff;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 800px) {
+
+    .admin-gallery {
+        padding: 25px;
+    }
+
+    #adminGalleryGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    #adminGalleryGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-upload-form {
+        padding: 20px;
+    }
+
+}
+
+
+
+/* =========================================
+   MOBILE RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 768px) {
+
+    /* HEADER */
+    header {
+        padding: 18px 20px;
+        flex-direction: column;
+        gap: 18px;
+        text-align: center;
+    }
+
+    .logo h1 {
+        font-size: 22px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .nav-button {
+        display: inline-block;
+    }
+
+
+    /* HERO */
+    .hero {
+        display: flex;
+        flex-direction: column;
+        padding: 50px 20px;
+        gap: 35px;
+    }
+
+    .hero-content {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-content h2 {
+        font-size: 42px;
+        line-height: 1.1;
+    }
+
+    .hero-text {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+    }
+
+
+    /* ABOUT */
+    .home-about {
+        padding: 70px 20px;
+    }
+
+    .about-content {
+        width: 100%;
+        text-align: center;
+    }
+
+    .about-content h2 {
+        font-size: 34px;
+        line-height: 1.2;
+    }
+
+
+    /* SERVICES */
+    .services {
+        padding: 70px 20px;
+    }
+
+    .services-heading {
+        text-align: center;
+    }
+
+    .services-heading h2 {
+        font-size: 34px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .service-card {
+        padding: 28px;
+    }
+
+
+    /* GALLERY */
+    .gallery {
+        padding: 70px 20px;
+    }
+
+    .gallery-heading {
+        display: block;
+        text-align: center;
+    }
+
+    .gallery-heading h2 {
+        font-size: 34px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+
+    /* BOOKING */
+    .booking {
+        padding: 70px 20px;
+    }
+
+    .booking-intro {
+        text-align: center;
+    }
+
+    .booking-intro h2 {
+        font-size: 34px;
+    }
+
+    .booking-form {
+        width: 100%;
+    }
+
+    .form-row {
+        display: block;
+    }
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+
+    /* CONTACT */
+    .contact {
+        padding: 70px 20px;
+    }
+
+    .contact-content {
+        text-align: center;
+    }
+
+    .contact-content h2 {
+        font-size: 34px;
+    }
+
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+
+    /* FOOTER */
+    footer {
+        padding: 25px 20px;
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 480px) {
+
+    .logo h1 {
+        font-size: 20px;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 40px 16px;
+    }
+
+    .hero-content h2 {
+        font-size: 34px;
+    }
+
+    .hero-image img {
+        height: 360px;
+    }
+
+    .home-about,
+    .services,
+    .gallery,
+    .booking,
+    .contact {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item img {
+        height: 350px;
+    }
+
+    .services-heading h2,
+    .gallery-heading h2,
+    .booking-intro h2,
+    .contact-content h2,
+    .about-content h2 {
+        font-size: 30px;
+    }
+
+}
