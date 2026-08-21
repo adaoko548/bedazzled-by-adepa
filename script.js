@@ -83,3 +83,71 @@ doneButton.addEventListener("click", function () {
     
 
 });
+
+async function loadWebsiteGallery() {
+
+    const gallery =
+        document.querySelector("#websiteGallery");
+
+    if (!gallery) {
+        return;
+    }
+
+    const { data, error } = await supabaseClient
+        .from("gallery")
+        .select("*")
+        .order("created_at", {
+            ascending: false
+        });
+
+    if (error) {
+
+        console.error(
+            "WEBSITE GALLERY ERROR:",
+            error
+        );
+
+        gallery.innerHTML =
+            "<p>Unable to load gallery.</p>";
+
+        return;
+    }
+
+    console.log(
+        "WEBSITE GALLERY:",
+        data
+    );
+
+    if (!data || data.length === 0) {
+
+        gallery.innerHTML =
+            "<p>No gallery photos available.</p>";
+
+        return;
+    }
+
+    gallery.innerHTML = "";
+
+    data.forEach(function (photo) {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "gallery-item";
+
+        item.innerHTML = `
+            <img
+                src="${photo.image_url}"
+                alt="${photo.title || "Bedazzled by Adepa beauty work"}"
+                loading="lazy"
+            >
+        `;
+
+        gallery.appendChild(item);
+
+    });
+}
+
+
+loadWebsiteGallery();

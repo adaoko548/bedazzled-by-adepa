@@ -1965,3 +1965,185 @@ footer {
     }
 
 }
+
+
+/* =========================================
+   BOOKING MANAGEMENT
+========================================= */
+
+.booking-card {
+    padding: 24px;
+    margin-bottom: 18px;
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+
+    background: #fff;
+}
+
+
+.booking-main-info {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+
+    margin-bottom: 22px;
+}
+
+
+.booking-customer h3 {
+    margin: 0 0 6px;
+
+    font-size: 18px;
+}
+
+
+.booking-customer p {
+    margin: 3px 0;
+
+    font-size: 13px;
+}
+
+
+.booking-status {
+    padding: 7px 12px;
+
+    border-radius: 50px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+}
+
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+
+.status-confirmed {
+    background: #d4edda;
+    color: #155724;
+}
+
+
+.status-completed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+
+.booking-details {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+.booking-detail span,
+.booking-message span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 10px;
+    letter-spacing: 1px;
+
+    opacity: 0.6;
+}
+
+
+.booking-detail strong {
+    font-size: 13px;
+}
+
+
+.booking-message {
+    padding: 15px;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    background: #f7f7f7;
+}
+
+
+.booking-message p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+.booking-actions {
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+
+.booking-action {
+    border: none;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+
+.booking-action:hover {
+    transform: translateY(-1px);
+}
+
+
+.booking-action.confirm {
+    background: #111;
+    color: white;
+}
+
+
+.booking-action.complete {
+    background: #222;
+    color: white;
+}
+
+
+.booking-action.cancel {
+    background: transparent;
+
+    border: 1px solid #ddd;
+}
+
+
+.booking-finished {
+    font-size: 12px;
+
+    opacity: 0.6;
+}

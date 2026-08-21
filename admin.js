@@ -122,83 +122,178 @@ function updateStatistics(bookings) {
 }
 
 
-// ===============================
-// DISPLAY BOOKINGS
-// ===============================
-
 function displayBookings(bookings) {
 
     const bookingList =
         document.querySelector("#bookingList");
 
+    if (!bookingList) {
+        return;
+    }
 
-    if (bookings.length === 0) {
+    if (!bookings || bookings.length === 0) {
 
-        bookingList.innerHTML =
-            '<div class="empty-bookings"><p>No bookings yet.</p></div>';
+        bookingList.innerHTML = `
+            <div class="empty-bookings">
+                <p>No bookings yet.</p>
+            </div>
+        `;
 
         return;
     }
 
-
     bookingList.innerHTML = "";
-
 
     bookings.forEach(function (booking) {
 
         const bookingCard =
             document.createElement("div");
 
+        bookingCard.className = "booking-card";
 
-        bookingCard.className =
-            "booking-card";
+        let actionButtons = "";
+
+        if (booking.status === "pending") {
+
+            actionButtons = `
+                <button
+                    class="booking-action confirm"
+                    onclick="updateBookingStatus('${booking.id}', 'confirmed')"
+                >
+                    Confirm
+                </button>
+
+                <button
+                    class="booking-action cancel"
+                    onclick="updateBookingStatus('${booking.id}', 'cancelled')"
+                >
+                    Cancel
+                </button>
+            `;
+
+        } else if (booking.status === "confirmed") {
+
+            actionButtons = `
+                <button
+                    class="booking-action complete"
+                    onclick="updateBookingStatus('${booking.id}', 'completed')"
+                >
+                    Mark Completed
+                </button>
+
+                <button
+                    class="booking-action cancel"
+                    onclick="updateBookingStatus('${booking.id}', 'cancelled')"
+                >
+                    Cancel
+                </button>
+            `;
+
+        } else if (booking.status === "completed") {
+
+            actionButtons = `
+                <span class="booking-finished">
+                    Appointment Completed
+                </span>
+            `;
+
+        } else if (booking.status === "cancelled") {
+
+            actionButtons = `
+                <span class="booking-finished">
+                    Booking Cancelled
+                </span>
+            `;
+        }
 
 
         bookingCard.innerHTML = `
 
-            <div class="booking-info">
+            <div class="booking-main-info">
 
-                <h3>${booking.name}</h3>
+                <div class="booking-customer">
 
-                <p>${booking.phone}</p>
+                    <h3>
+                        ${booking.name}
+                    </h3>
 
-            </div>
+                    <p>
+                        ${booking.phone}
+                    </p>
 
+                    <p>
+                        ${booking.email}
+                    </p>
 
-            <div class="booking-detail">
-
-                <span>SERVICE</span>
-
-                ${booking.service}
-
-            </div>
-
-
-            <div class="booking-detail">
-
-                <span>DATE</span>
-
-                ${booking.date}
-
-            </div>
+                </div>
 
 
-            <div class="booking-detail">
-
-                <span>TIME</span>
-
-                ${booking.time}
-
-            </div>
-
-
-            <div>
-
-                <span class="booking-status status-${booking.status}">
-
+                <span
+                    class="booking-status status-${booking.status}"
+                >
                     ${booking.status}
-
                 </span>
+
+            </div>
+
+
+            <div class="booking-details">
+
+                <div class="booking-detail">
+
+                    <span>SERVICE</span>
+
+                    <strong>
+                        ${booking.service}
+                    </strong>
+
+                </div>
+
+
+                <div class="booking-detail">
+
+                    <span>DATE</span>
+
+                    <strong>
+                        ${booking.date}
+                    </strong>
+
+                </div>
+
+
+                <div class="booking-detail">
+
+                    <span>TIME</span>
+
+                    <strong>
+                        ${booking.time}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            ${
+                booking.message
+                    ? `
+                        <div class="booking-message">
+
+                            <span>MESSAGE</span>
+
+                            <p>
+                                ${booking.message}
+                            </p>
+
+                        </div>
+                    `
+                    : ""
+            }
+
+
+            <div class="booking-actions">
+
+                ${actionButtons}
 
             </div>
 
@@ -208,6 +303,64 @@ function displayBookings(bookings) {
         bookingList.appendChild(bookingCard);
 
     });
+
+}
+
+async function updateBookingStatus(
+    bookingId,
+    newStatus
+) {
+
+    console.log(
+        "Updating booking:",
+        bookingId,
+        newStatus
+    );
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("booking")
+        .update({
+            status: newStatus
+        })
+        .eq("id", bookingId)
+        .select();
+
+
+    if (error) {
+
+        console.error(
+            "BOOKING STATUS ERROR:",
+            error
+        );
+
+        alert(
+            "Unable to update booking: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    console.log(
+        "BOOKING UPDATED:",
+        data
+    );
+
+
+    alert(
+        "Booking marked as " +
+        newStatus +
+        "."
+    );
+
+
+    // Reload bookings
+    loadBookings();
 
 }
 
@@ -389,18 +542,38 @@ if (galleryUploadForm) {
                 publicUrlData.publicUrl;
 
 
-            // Save image information to database
+           // Save photo information to the gallery table
 
-            const {
-                error: databaseError
-            } = await supabaseClient
-                .from("gallery")
-                .insert([
-                    {
-                        title: title,
-                        image_url: imageUrl
-                    }
-                ]);
+const {
+    data: galleryData,
+    error: databaseError
+} = await supabaseClient
+    .from("gallery")
+    .insert([
+        {
+            title: title,
+            image_url: imageUrl
+        }
+    ])
+    .select();
+
+if (databaseError) {
+
+    console.error(
+        "GALLERY DATABASE ERROR:",
+        databaseError
+    );
+
+    message.textContent =
+        "Photo uploaded, but gallery information could not be saved.";
+
+    return;
+}
+
+console.log(
+    "GALLERY DATABASE SAVED:",
+    galleryData
+);
 
 
             if (databaseError) {
@@ -493,13 +666,13 @@ async function loadGallery() {
 
                 <h3>${photo.title}</h3>
 
-                <button
-                    class="delete-gallery-button"
-                    onclick="deleteGalleryPhoto('${photo.id}', '${photo.image_url}')"
-                >
-                    Delete
-                </button>
-
+               <button
+    class="delete-gallery-button"
+    data-id="${photo.id}"
+    data-url="${photo.image_url}"
+>
+    Delete
+</button>
             </div>
         `;
 
@@ -507,5 +680,151 @@ async function loadGallery() {
 
     });
 }
+document.addEventListener("click", function (event) {
+
+    if (!event.target.classList.contains("delete-gallery-button")) {
+        return;
+    }
+
+    const id = event.target.dataset.id;
+    const imageUrl = event.target.dataset.url;
+
+    console.log("DELETE BUTTON CLICKED");
+    console.log("ID:", id);
+    console.log("URL:", imageUrl);
+
+    deleteGalleryPhoto(id, imageUrl);
+
+});
 
 loadGallery();
+
+
+async function deleteGalleryPhoto(id, imageUrl) {
+
+    console.log("DELETE STARTED");
+    console.log("ID:", id);
+    console.log("IMAGE URL:", imageUrl);
+
+    try {
+
+        const marker =
+            "/storage/v1/object/public/gallery/";
+
+        const markerIndex =
+            imageUrl.indexOf(marker);
+
+        if (markerIndex === -1) {
+
+            console.error(
+                "Could not find storage file path."
+            );
+
+            alert("Could not find the image file.");
+
+            return;
+        }
+
+        const filePath =
+            decodeURIComponent(
+                imageUrl.substring(
+                    markerIndex + marker.length
+                )
+            );
+
+        console.log(
+            "STORAGE FILE PATH:",
+            filePath
+        );
+
+
+        // Delete from Storage
+        const {
+            data: storageData,
+            error: storageError
+        } = await supabaseClient
+            .storage
+            .from("gallery")
+            .remove([filePath]);
+
+
+        console.log(
+            "STORAGE DELETE RESULT:",
+            storageData
+        );
+
+
+        if (storageError) {
+
+            console.error(
+                "STORAGE DELETE ERROR:",
+                storageError
+            );
+
+            alert(
+                "Storage error: " +
+                storageError.message
+            );
+
+            return;
+        }
+
+
+        // Delete from database
+        const {
+            data: databaseData,
+            error: databaseError
+        } = await supabaseClient
+            .from("gallery")
+            .delete()
+            .eq("id", id)
+            .select();
+
+
+        console.log(
+            "DATABASE DELETE RESULT:",
+            databaseData
+        );
+
+
+        if (databaseError) {
+
+            console.error(
+                "DATABASE DELETE ERROR:",
+                databaseError
+            );
+
+            alert(
+                "Database error: " +
+                databaseError.message
+            );
+
+            return;
+        }
+
+
+        console.log(
+            "PHOTO DELETED SUCCESSFULLY"
+        );
+
+        alert(
+            "Photo deleted successfully."
+        );
+
+        loadGallery();
+
+    } catch (error) {
+
+        console.error(
+            "DELETE ERROR:",
+            error
+        );
+
+        alert(
+            "Something went wrong: " +
+            error.message
+        );
+
+    }
+
+}

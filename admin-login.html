@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,17 +14,7 @@
     <title>Admin Login | Bedazzled by Adepa</title>
 
     <link rel="stylesheet" href="style.css">
-    <div class="admin-nav-actions">
-
-    <a href="index.html" class="nav-button">
-        View Website
-    </a>
-
-    <button id="logoutButton" class="logout-button">
-        Logout
-    </button>
-
-</div>
+    <link rel="stylesheet" href="admin-login.css">
 
 </head>
 
@@ -34,18 +25,31 @@
 
         <div class="login-box">
 
-            <p class="eyebrow">
-                BEDAZZLED BY ADEPA
-            </p>
+            <a href="index.html" class="back-to-site">
+                ← View Website
+            </a>
 
-            <h1>
-                Welcome back.
-            </h1>
 
-            <p class="login-description">
-                Sign in to manage appointments and
-                website content.
-            </p>
+            <div class="login-heading">
+
+                <p class="eyebrow">
+                    BEDAZZLED BY ADEPA
+                </p>
+
+                <p class="admin-label">
+                    ADMIN PORTAL
+                </p>
+
+                <h1>
+                    Welcome back.
+                </h1>
+
+                <p class="login-description">
+                    Sign in to manage appointments
+                    and website content.
+                </p>
+
+            </div>
 
 
             <form id="loginForm">
@@ -60,6 +64,7 @@
                         type="email"
                         id="email"
                         placeholder="Enter your email"
+                        autocomplete="email"
                         required
                     >
 
@@ -72,12 +77,25 @@
                         Password
                     </label>
 
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        required
-                    >
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="password-toggle"
+                        >
+                            Show
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -86,8 +104,14 @@
                     type="submit"
                     class="login-button"
                 >
-                    Sign In
+                    <span>Sign In</span>
+
+                    <span class="login-arrow">
+                        →
+                    </span>
+
                 </button>
+
 
                 <p
                     id="loginMessage"
@@ -95,6 +119,11 @@
                 ></p>
 
             </form>
+
+
+            <p class="login-footer">
+                Authorized access only.
+            </p>
 
         </div>
 
@@ -105,6 +134,41 @@
 
     <script src="login.js"></script>
 
+
+    <script>
+
+        const passwordInput =
+            document.querySelector("#password");
+
+        const togglePassword =
+            document.querySelector("#togglePassword");
+
+
+        togglePassword.addEventListener(
+            "click",
+            function () {
+
+                const isPassword =
+                    passwordInput.type === "password";
+
+
+                passwordInput.type =
+                    isPassword
+                        ? "text"
+                        : "password";
+
+
+                togglePassword.textContent =
+                    isPassword
+                        ? "Hide"
+                        : "Show";
+
+            }
+        );
+
+    </script>
+
 </body>
 
 </html>
+

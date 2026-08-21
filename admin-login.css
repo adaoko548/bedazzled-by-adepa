@@ -1,0 +1,386 @@
+```css
+/* =========================================================
+   BEDAZZLED BY ADEPA — CLEAN ADMIN LOGIN
+========================================================= */
+
+.login-page {
+    min-height: 100vh;
+    margin: 0;
+
+    background: #f7f4f1;
+
+    color: #171514;
+}
+
+
+/* =========================================================
+   CENTER EVERYTHING
+========================================================= */
+
+.login-container {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LOGIN BOX
+========================================================= */
+
+.login-box {
+    width: 100%;
+    max-width: 430px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   BACK TO WEBSITE
+========================================================= */
+
+.back-to-site {
+    display: inline-block;
+
+    margin-bottom: 55px;
+
+    color: #77716d;
+
+    font-size: 11px;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.back-to-site:hover {
+    color: #171514;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.login-heading {
+    margin-bottom: 38px;
+}
+
+.login-heading .eyebrow {
+    margin-bottom: 16px;
+
+    font-size: 10px;
+
+    letter-spacing: 2.5px;
+}
+
+.admin-label {
+    margin: 0 0 12px;
+
+    color: #8a817a;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+.login-heading h1 {
+    margin: 0 0 15px;
+
+    font-size: clamp(42px, 6vw, 58px);
+
+    line-height: 0.95;
+
+    letter-spacing: -2.5px;
+
+    font-weight: 500;
+}
+
+.login-description {
+    max-width: 340px;
+
+    margin: 0 auto;
+
+    color: #77716d;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+#loginForm {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group label {
+    color: #34302d;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 15px 16px;
+
+    background: #ffffff;
+
+    color: #171514;
+
+    border: 1px solid #ded8d3;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #aaa39d;
+}
+
+.form-group input:focus {
+    border-color: #77716d;
+
+    box-shadow:
+        0 0 0 3px rgba(23, 21, 20, 0.05);
+}
+
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 60px;
+}
+
+.password-toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 14px;
+
+    transform: translateY(-50%);
+
+    padding: 4px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #77716d;
+
+    font-family: inherit;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.password-toggle:hover {
+    color: #171514;
+}
+
+
+/* =========================================================
+   SIGN IN BUTTON
+========================================================= */
+
+.login-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 16px 18px;
+
+    background: #171514;
+
+    color: #ffffff;
+
+    border: 1px solid #171514;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+
+    opacity: 0.92;
+
+    box-shadow:
+        0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.login-arrow {
+    font-size: 16px;
+
+    transition: transform 0.2s ease;
+}
+
+.login-button:hover .login-arrow {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.login-message {
+    min-height: 18px;
+
+    margin: 0;
+
+    color: #77716d;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.login-footer {
+    margin-top: 45px;
+
+    color: #aaa39d;
+
+    font-size: 9px;
+
+    letter-spacing: 0.5px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .login-container {
+        padding: 30px 24px;
+    }
+
+    .login-box {
+        max-width: 390px;
+    }
+
+    .back-to-site {
+        margin-bottom: 42px;
+    }
+
+    .login-heading {
+        margin-bottom: 32px;
+    }
+
+    .login-heading h1 {
+        font-size: 42px;
+
+        letter-spacing: -2px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .login-container {
+        padding: 25px 20px;
+    }
+
+    .login-heading h1 {
+        font-size: 37px;
+    }
+
+    .form-group input {
+        padding: 14px;
+    }
+
+    .login-button {
+        padding: 15px 16px;
+    }
+
+}
+```

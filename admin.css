@@ -1,0 +1,855 @@
+/* =========================================================
+   BEDAZZLED BY ADEPA — ADMIN DASHBOARD
+========================================================= */
+
+:root {
+    --admin-bg: #f7f4f1;
+    --admin-card: #ffffff;
+    --admin-text: #171514;
+    --admin-muted: #77716d;
+    --admin-border: #e8e2dd;
+    --admin-dark: #171514;
+    --admin-soft: #f0ebe7;
+    --admin-radius: 18px;
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+body {
+    background: var(--admin-bg);
+    color: var(--admin-text);
+}
+
+.admin-page {
+    width: min(1400px, 92%);
+    margin: 0 auto;
+    padding: 70px 0 100px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+body > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 22px 5%;
+
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--admin-border);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+body > header .logo h1 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+
+/* =========================================================
+   ADMIN INTRO
+========================================================= */
+
+.admin-header {
+    max-width: 700px;
+    margin-bottom: 55px;
+}
+
+.admin-header .eyebrow {
+    margin-bottom: 14px;
+}
+
+.admin-header h2 {
+    margin: 0 0 18px;
+
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -2.5px;
+}
+
+.admin-header > p:last-child {
+    max-width: 550px;
+
+    color: var(--admin-muted);
+
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.dashboard-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 80px;
+}
+
+.stat-card {
+    position: relative;
+
+    min-height: 180px;
+
+    padding: 28px;
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.07);
+}
+
+.stat-card > span {
+    display: block;
+
+    margin-bottom: 35px;
+
+    color: var(--admin-muted);
+
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.stat-card h3 {
+    margin: 0 0 4px;
+
+    font-size: 48px;
+    font-weight: 500;
+
+    letter-spacing: -2px;
+}
+
+.stat-card p {
+    margin: 0;
+
+    color: var(--admin-muted);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   APPOINTMENTS
+========================================================= */
+
+.appointments {
+    margin-bottom: 90px;
+}
+
+.appointments-heading,
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.appointments-heading h2,
+.section-heading h2 {
+    margin: 7px 0 0;
+
+    font-size: clamp(28px, 4vw, 42px);
+
+    letter-spacing: -1.5px;
+}
+
+.section-heading > p:last-child {
+    margin-top: 10px;
+
+    color: var(--admin-muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   BOOKING CARD
+========================================================= */
+
+.booking-card {
+    margin-bottom: 18px;
+    padding: 28px;
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.06);
+}
+
+
+.booking-main-info {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 25px;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.booking-customer h3 {
+    margin: 0 0 8px;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.booking-customer p {
+    margin: 3px 0;
+
+    color: var(--admin-muted);
+
+    font-size: 13px;
+}
+
+
+.booking-status {
+    flex-shrink: 0;
+
+    padding: 7px 13px;
+
+    border-radius: 50px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background: #fff1cf;
+    color: #8a6200;
+}
+
+.status-confirmed {
+    background: #e5f4e8;
+    color: #276238;
+}
+
+.status-completed {
+    background: #e5eef7;
+    color: #315a7d;
+}
+
+.status-cancelled {
+    background: #f7e4e4;
+    color: #8b3d3d;
+}
+
+
+/* =========================================================
+   BOOKING DETAILS
+========================================================= */
+
+.booking-details {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    padding: 24px 0;
+}
+
+.booking-detail {
+    padding-right: 15px;
+
+    border-right: 1px solid var(--admin-border);
+}
+
+.booking-detail:last-child {
+    border-right: none;
+}
+
+.booking-detail span,
+.booking-message > span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--admin-muted);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.booking-detail strong {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+.booking-message {
+    padding: 17px;
+
+    margin-bottom: 22px;
+
+    background: var(--admin-soft);
+
+    border-radius: 12px;
+}
+
+.booking-message p {
+    margin: 0;
+
+    color: #55504c;
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   BOOKING ACTIONS
+========================================================= */
+
+.booking-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.booking-action {
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.booking-action:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+}
+
+.booking-action.confirm,
+.booking-action.complete {
+    color: #fff;
+
+    background: var(--admin-dark);
+
+    border: 1px solid var(--admin-dark);
+}
+
+.booking-action.cancel {
+    color: var(--admin-text);
+
+    background: transparent;
+
+    border: 1px solid var(--admin-border);
+}
+
+.booking-finished {
+    color: var(--admin-muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   GALLERY MANAGEMENT
+========================================================= */
+
+.admin-gallery {
+    padding-top: 10px;
+}
+
+.gallery-upload-form {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr auto;
+
+    align-items: end;
+
+    gap: 18px;
+
+    padding: 28px;
+
+    margin-bottom: 55px;
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+}
+
+.gallery-upload-form .form-group {
+    margin: 0;
+}
+
+.gallery-upload-form label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.gallery-upload-form input[type="text"],
+.gallery-upload-form input[type="file"] {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 14px;
+
+    background: #faf9f8;
+
+    border: 1px solid var(--admin-border);
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+}
+
+.gallery-upload-form input:focus {
+    border-color: #aaa29c;
+}
+
+.gallery-upload-form input[type="file"] {
+    padding: 11px;
+}
+
+.gallery-upload-form .booking-button {
+    height: 45px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   UPLOAD MESSAGE
+========================================================= */
+
+#galleryUploadMessage {
+    grid-column: 1 / -1;
+
+    margin: 0;
+
+    color: var(--admin-muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ADMIN GALLERY
+========================================================= */
+
+.admin-gallery-list {
+    padding-top: 10px;
+}
+
+.admin-gallery-list > h2 {
+    margin-bottom: 22px;
+
+    font-size: 24px;
+    letter-spacing: -0.8px;
+}
+
+.admin-gallery-list .gallery-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.admin-gallery-item {
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+    border-radius: 14px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.admin-gallery-item:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.admin-gallery-item img {
+    display: block;
+
+    width: 100%;
+    height: 260px;
+
+    object-fit: cover;
+}
+
+.admin-gallery-info {
+    padding: 16px;
+}
+
+.admin-gallery-info h3 {
+    margin: 0 0 14px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.delete-gallery-button {
+    width: 100%;
+
+    padding: 10px;
+
+    background: transparent;
+
+    color: #8b3d3d;
+
+    border: 1px solid #ead3d3;
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.delete-gallery-button:hover {
+    background: #f8eaea;
+
+    border-color: #d9b9b9;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+========================================================= */
+
+.empty-bookings {
+    padding: 60px 20px;
+
+    text-align: center;
+
+    background: var(--admin-card);
+
+    border: 1px dashed var(--admin-border);
+    border-radius: var(--admin-radius);
+}
+
+.empty-bookings p {
+    margin: 0;
+
+    color: var(--admin-muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .dashboard-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .admin-gallery-list .gallery-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .gallery-upload-form {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .gallery-upload-form .booking-button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    body > header {
+        padding: 17px 5%;
+
+        gap: 15px;
+    }
+
+    body > header .logo h1 {
+        font-size: 15px;
+    }
+
+    body > header .nav-button {
+        padding: 10px 13px;
+
+        font-size: 10px;
+    }
+
+    .admin-page {
+        width: 90%;
+
+        padding: 45px 0 70px;
+    }
+
+    .admin-header {
+        margin-bottom: 35px;
+    }
+
+    .admin-header h2 {
+        font-size: 38px;
+
+        letter-spacing: -1.7px;
+    }
+
+    .dashboard-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+
+        margin-bottom: 55px;
+    }
+
+    .stat-card {
+        min-height: 140px;
+
+        padding: 19px;
+    }
+
+    .stat-card > span {
+        margin-bottom: 20px;
+    }
+
+    .stat-card h3 {
+        font-size: 35px;
+    }
+
+    .appointments {
+        margin-bottom: 60px;
+    }
+
+    .appointments-heading h2,
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .booking-card {
+        padding: 20px;
+    }
+
+    .booking-main-info {
+        flex-direction: column;
+
+        gap: 14px;
+    }
+
+    .booking-status {
+        align-self: flex-start;
+    }
+
+    .booking-details {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+        padding: 0;
+    }
+
+    .booking-detail {
+        padding: 15px 0;
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--admin-border);
+    }
+
+    .booking-detail:last-child {
+        border-bottom: none;
+    }
+
+    .booking-actions {
+        flex-wrap: wrap;
+    }
+
+    .booking-action {
+        flex: 1;
+
+        min-width: 110px;
+    }
+
+    .gallery-upload-form {
+        grid-template-columns: 1fr;
+
+        padding: 20px;
+    }
+
+    .gallery-upload-form .booking-button {
+        width: 100%;
+    }
+
+    .admin-gallery-list .gallery-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+    .admin-gallery-item img {
+        height: 190px;
+    }
+
+    .admin-gallery-info {
+        padding: 12px;
+    }
+
+    .admin-gallery-info h3 {
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .dashboard-stats {
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-card h3 {
+        font-size: 30px;
+    }
+
+    .admin-gallery-list .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-gallery-item img {
+        height: 260px;
+    }
+
+}.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout-button {
+    padding: 11px 18px;
+
+    background: #171514;
+    color: #fff;
+
+    border: 1px solid #171514;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.logout-button:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 700px) {
+
+    .admin-header-actions {
+        gap: 6px;
+    }
+
+    .logout-button {
+        padding: 10px 12px;
+
+        font-size: 9px;
+    }
+
+}
