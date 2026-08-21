@@ -136,6 +136,79 @@
             </div>
 
         </section>
+        <section class="admin-gallery">
+
+    <div class="section-heading">
+        <p class="eyebrow">GALLERY MANAGEMENT</p>
+
+        <h2>Upload New Photo</h2>
+
+        <p>
+            Add a new makeup or nail photo to the website gallery.
+        </p>
+    </div>
+
+
+    <form id="galleryUploadForm" class="gallery-upload-form">
+
+        <div class="form-group">
+
+            <label for="galleryImage">
+                Choose Photo
+            </label>
+
+            <input
+                type="file"
+                id="galleryImage"
+                accept="image/jpeg,image/png,image/webp"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="galleryTitle">
+                Photo Title
+            </label>
+
+            <input
+                type="text"
+                id="galleryTitle"
+                placeholder="e.g. Soft Glam Makeup"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="booking-button"
+        >
+            Upload Photo
+        </button>
+
+
+        <p id="galleryUploadMessage"></p>
+
+    </form>
+
+
+    <div class="admin-gallery-list">
+
+        <h2>Current Gallery</h2>
+
+        <div id="adminGalleryGrid" class="gallery-grid">
+
+            <p>Loading gallery...</p>
+
+        </div>
+
+    </div>
+
+</section>
 
     </main>
 
