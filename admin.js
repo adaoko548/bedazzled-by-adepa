@@ -13,33 +13,33 @@ const supabaseClient = window.supabase.createClient(
 
 async function checkAdmin() {
 
+    console.log("Checking admin session...");
+
     const {
-        data: { session },
+        data,
         error
     } = await supabaseClient.auth.getSession();
 
-
     if (error) {
 
-        console.error("Session error:", error);
-
-        window.location.href = "admin-login.html";
+        console.error("SESSION ERROR:", error);
 
         return false;
     }
 
+    console.log("SESSION DATA:", data);
 
-    if (!session) {
+    if (!data.session) {
 
-        console.log("No active admin session.");
-
-        window.location.href = "admin-login.html";
+        console.log("No session found.");
 
         return false;
     }
 
-
-    console.log("Admin session found:", session.user.email);
+    console.log(
+        "Admin logged in:",
+        data.session.user.email
+    );
 
     return true;
 }
@@ -218,19 +218,16 @@ function displayBookings(bookings) {
 
 async function startDashboard() {
 
-    const isLoggedIn =
-        await checkAdmin();
-
+    const isLoggedIn = await checkAdmin();
 
     if (!isLoggedIn) {
 
-        return;
+        window.location.href = "admin-login.html";
 
+        return;
     }
 
-
     await loadBookings();
-
 }
 
 
@@ -276,3 +273,239 @@ if (logoutButton) {
     );
 
 }
+
+// ===============================
+// GALLERY UPLOAD
+// ===============================
+
+const galleryUploadForm =
+    document.querySelector("#galleryUploadForm");
+
+
+if (galleryUploadForm) {
+
+    galleryUploadForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const imageInput =
+                document.querySelector("#galleryImage");
+
+
+            const titleInput =
+                document.querySelector("#galleryTitle");
+
+
+            const message =
+                document.querySelector("#galleryUploadMessage");
+
+
+            const file =
+                imageInput.files[0];
+
+
+            const title =
+                titleInput.value.trim();
+
+
+            if (!file) {
+
+                message.textContent =
+                    "Please choose an image.";
+
+                return;
+            }
+
+
+            if (!title) {
+
+                message.textContent =
+                    "Please enter a photo title.";
+
+                return;
+            }
+
+
+            message.textContent =
+                "Uploading photo...";
+
+
+            // Create a unique filename
+
+            const fileExtension =
+                file.name.split(".").pop();
+
+
+            const fileName =
+                `${Date.now()}-${Math.random()
+                    .toString(36)
+                    .substring(2)}.${fileExtension}`;
+
+
+            // Upload image to Supabase Storage
+
+            const {
+                data: uploadData,
+                error: uploadError
+            } = await supabaseClient.storage
+                .from("gallery")
+                .upload(fileName, file);
+
+
+            if (uploadError) {
+
+                console.error(
+                    "Image upload error:",
+                    uploadError
+                );
+
+
+                message.textContent =
+                    "Image upload failed.";
+
+                return;
+            }
+
+
+            console.log(
+                "Image uploaded:",
+                uploadData
+            );
+
+
+            // Get public image URL
+
+            const {
+                data: publicUrlData
+            } = supabaseClient.storage
+                .from("gallery")
+                .getPublicUrl(fileName);
+
+
+            const imageUrl =
+                publicUrlData.publicUrl;
+
+
+            // Save image information to database
+
+            const {
+                error: databaseError
+            } = await supabaseClient
+                .from("gallery")
+                .insert([
+                    {
+                        title: title,
+                        image_url: imageUrl
+                    }
+                ]);
+
+
+            if (databaseError) {
+
+                console.error(
+                    "Gallery database error:",
+                    databaseError
+                );
+
+
+                message.textContent =
+                    "Photo uploaded but could not be saved.";
+
+                return;
+            }
+
+
+            message.textContent =
+                "Photo uploaded successfully!";
+
+
+            galleryUploadForm.reset();
+
+
+            loadGallery();
+
+        }
+    );
+
+}// ===============================
+// LOAD GALLERY
+// ===============================
+
+async function loadGallery() {
+
+    const galleryGrid =
+        document.querySelector("#adminGalleryGrid");
+
+    if (!galleryGrid) {
+        return;
+    }
+
+    const { data, error } = await supabaseClient
+        .from("gallery")
+        .select("*")
+        .order("created_at", {
+            ascending: false
+        });
+
+    if (error) {
+
+        console.error(
+            "Gallery loading error:",
+            error
+        );
+
+        galleryGrid.innerHTML =
+            "<p>Unable to load gallery.</p>";
+
+        return;
+    }
+
+    console.log("GALLERY FROM SUPABASE:", data);
+
+    if (!data || data.length === 0) {
+
+        galleryGrid.innerHTML =
+            "<p>No photos uploaded yet.</p>";
+
+        return;
+    }
+
+    galleryGrid.innerHTML = "";
+
+    data.forEach(function (photo) {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "admin-gallery-item";
+
+        item.innerHTML = `
+            <img
+                src="${photo.image_url}"
+                alt="${photo.title}"
+            >
+
+            <div class="admin-gallery-info">
+
+                <h3>${photo.title}</h3>
+
+                <button
+                    class="delete-gallery-button"
+                    onclick="deleteGalleryPhoto('${photo.id}', '${photo.image_url}')"
+                >
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+        galleryGrid.appendChild(item);
+
+    });
+}
+
+loadGallery();
