@@ -81,7 +81,7 @@ nav a:hover {
 /* HERO */
 
 main {
-    background: #ffffff;
+    background: #522525;
 }
 
 .hero {
@@ -100,7 +100,7 @@ main {
 .eyebrow {
     font-size: 12px;
     letter-spacing: 4px;
-    color: #8d6575;
+    color: #ffffff;
     margin-bottom: 25px;
 }
 
@@ -201,7 +201,7 @@ button:hover {
 }
 
 .home-about p:not(.eyebrow) {
-    color: #6d5a62;
+    color: #7c3050;
     font-size: 17px;
     line-height: 1.8;
     margin-bottom: 30px;
@@ -222,7 +222,7 @@ footer {
 
 .services {
     padding: 120px 7%;
-    background: #f8f3f5;
+    background: #522525;
 }
 
 .services-heading {
@@ -238,7 +238,7 @@ footer {
 }
 
 .services-heading > p:last-child {
-    color: #6d5a62;
+    color: #ffffff;
     font-size: 17px;
     line-height: 1.7;
 }
@@ -262,7 +262,7 @@ footer {
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(43, 32, 36, 0.08);
+    box-shadow: 0 20px 40px rgba(235, 229, 231, 0.08);
 }
 
 .service-number {
@@ -343,7 +343,7 @@ footer {
 
 .gallery-heading > p {
     max-width: 350px;
-    color: #6d5a62;
+    color: #6d0d35;
     line-height: 1.7;
 }
 
@@ -422,7 +422,7 @@ footer {
 
 .booking {
     padding: 120px 7%;
-    background: #f8f3f5;
+    background: #522525;
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
     gap: 100px;
@@ -443,7 +443,7 @@ footer {
 
 .booking-intro > p:last-child {
     max-width: 450px;
-    color: #6d5a62;
+    color: #ffffff;
     line-height: 1.8;
 }
 
